@@ -55,10 +55,16 @@ To use the script:
 - [ ] Add my own tweaks if I grow a brain
 - [ ] Build config UIs to toggle features
 
+---
+
 ## 👤 About Me
 
-Just a regular Torn player who got tired of losing good scripts to dead links and buried forum posts.  
-This repo is my personal stash — not a dev, just collecting and organizing the tools that make Torn less painful.
+I'm Nick — Service Desk Agent by day, degenerate Torn player by night.  
+I didn’t write the scripts in this repo, but I use them, test them, and sometimes tweak them with the help of Codex or AI.  
+This repo exists mostly so I stop losing track of good tools every time I reinstall or switch machines.
 
-I didn’t write these scripts, but I might tweak or optimize them with help from AI if needed.  
-If it breaks, it's probably my fault anyway.
+Also working on side projects like a local AI assistant named **Lex**, and a GPU-powered subtitle tool for streamers called **SubSplit**.  
+Basically, if it's techy and automates something — I’m probably messing with it.
+
+> If you're here looking for polished releases, wrong repo. If you're here to fix broken Torn UI, welcome to the vault.
+

@@ -1,63 +1,44 @@
-# 🧠 Torn Script Vault
+# 📁 Torn Script Vault
 
-This repository contains a personal collection of custom scripts for the browser game [Torn](https://www.torn.com).  
-Each script is designed to enhance gameplay, improve UI/UX, automate minor tasks, or just reduce the grind.
+This is a personal repo where I collect useful scripts for the browser game [Torn](https://www.torn.com).  
+I didn’t write these — this is just my curated stash. Think of it as a script toolbox.
 
-Think of this repo as my Torn-enhancer toolbox: if it's annoying, slow, or ugly — I probably wrote a fix for it.
-
----
-
-## ⚒️ What’s Inside
-
-Each script in this repo is:
-- Written in JavaScript (for use with Tampermonkey/Greasemonkey)
-- Focused on **utility**, **performance**, and **simplicity**
-- Created for my personal use but shared in case others find it helpful
-
-Some scripts currently included:
-- **Crimes 2.0 Helper**  
-  Adds links to guides, quick-buy buttons, and chain counter to Crimes 2.0 interface.
-- **Gym Trainer Helper**  
-  Tracks gains and optionally calculates happy/jump thresholds.
-- **Market Tracker**  
-  Auto-refreshes and logs price changes for key items.
-- *(More incoming, or stored in branches until ready)*
+Currently includes:
+- ✅ 1 script (more might come if I get bored or obsessed)
 
 ---
 
-## 🔧 Installation
+## 🧰 Script List
 
-Use [Tampermonkey](https://www.tampermonkey.net/) or similar to install `.user.js` scripts manually.
-
-1. Install Tampermonkey
-2. Click on the raw `.user.js` file in this repo
-3. Tampermonkey will prompt you to install
-
----
-
-## 🤖 Optimization Requests
-
-This repo is being reviewed and refined with **OpenAI Codex** to:
-- Clean up redundant or outdated code
-- Add quality-of-life features
-- Improve performance or async behavior
-- Simplify logic, reduce browser strain
+### 🔹 Crimes 2.0 Helper
+- **Author:** TiltGod5000  
+- **Source:** [GreasyFork link](https://greasyfork.org/scripts/516719)  
+- **Features:**  
+  - Adds guide links to each crime  
+  - Quick-buy button for materials/enhancers  
+  - Crime chain counter
 
 ---
 
-## 🧠 Goals (with Codex)
+## ⚙️ Usage
 
-- [ ] Reduce DOM polling where possible
-- [ ] Add config UI panels to major scripts
-- [ ] Auto-detect Torn layouts / dark mode variants
-- [ ] Optimize for low RAM usage during long sessions
+To use the script:
+1. Install [Tampermonkey](https://www.tampermonkey.net/)
+2. Load the `.user.js` file manually or from the link above
+3. Done
 
 ---
 
-## 🛠 Codex Instructions
+## 💡 Why This Repo Exists
 
-If you're Copilot/Codex:
-- Assume all `.user.js` files are Greasemonkey/Tampermonkey scripts
-- Prioritize non-blocking execution (defer/async behavior)
-- Where possible, convert static selectors to dynamic detection
-- Suggest modular improvements or shared utilities across scripts
+- I got tired of losing good scripts
+- I wanted to optimize or tweak them using Codex/AI
+- Easier to update or track changes locally
+
+---
+
+## 🤖 Future Plans (Maybe)
+
+- [ ] Let Codex clean up and optimize stuff
+- [ ] Add my own tweaks if I grow a brain
+- [ ] Build config UIs to toggle features

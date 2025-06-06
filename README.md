@@ -59,7 +59,7 @@ To use the script:
 
 ## 👤 About Me
 
-I'm Nick — Service Desk Agent by day, degenerate Torn player by night.  
+I'm Nick/Dyhr — Service Desk Agent by day, degenerate Torn player by night.  
 I didn’t write the scripts in this repo, but I use them, test them, and sometimes tweak them with the help of Codex or AI.  
 This repo exists mostly so I stop losing track of good tools every time I reinstall or switch machines.
 

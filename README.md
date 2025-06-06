@@ -46,3 +46,11 @@ To use the script:
 - [ ] Let Codex clean up and optimize stuff
 - [ ] Add my own tweaks if I grow a brain
 - [ ] Build config UIs to toggle features
+
+## 👤 About Me
+
+Just a regular Torn player who got tired of losing good scripts to dead links and buried forum posts.  
+This repo is my personal stash — not a dev, just collecting and organizing the tools that make Torn less painful.
+
+I didn’t write these scripts, but I might tweak or optimize them with help from AI if needed.  
+If it breaks, it's probably my fault anyway.

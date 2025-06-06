@@ -15,8 +15,9 @@ Currently includes:
 - **Source:** [GreasyFork link](https://greasyfork.org/scripts/516719)  
 - **Features:**  
   - Adds guide links to each crime  
-  - Quick-buy button for materials/enhancers  
+  - Quick-buy button for materials/enhancers
   - Crime chain counter
+  - In-page settings panel
 
 ---
 

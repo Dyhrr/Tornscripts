@@ -4,8 +4,7 @@
 // @version      1.0
 // @description  Prevents accidental selling of selected stocks by locking them.
 // @author       Dyhr
-// @license      MIT
-// @match        https://www.torn.com/loader.php?sid=stocks*
+// @match        https://www.torn.com/page.php?sid=stocks*
 // @grant        GM_addStyle
 // @run-at       document-idle
 // ==/UserScript==
@@ -96,4 +95,3 @@
 
   init();
 })();
-

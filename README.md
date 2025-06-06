@@ -21,6 +21,14 @@ Currently includes:
   - In-page settings panel
   - Optional keyboard shortcuts
 
+### 🔹 Stock Lock
+- **Author:** Dyhr
+- **Source:** This repository
+
+- **Features:**
+  - Lock specific stocks to disable selling
+  - Remembers locks via localStorage
+
 
 ---
 

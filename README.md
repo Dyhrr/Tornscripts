@@ -13,12 +13,14 @@ Currently includes:
 ### 🔹 Crimes 2.0 Helper
 - **Author:** TiltGod5000  
 - **Source:** [GreasyFork link](https://greasyfork.org/scripts/516719)  
+
 - **Features:**
   - Adds guide links to each crime
   - Quick-buy button for materials/enhancers
   - Crime chain counter
   - In-page settings panel
   - Optional keyboard shortcuts
+
 
 ---
 

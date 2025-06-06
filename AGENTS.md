@@ -1,55 +1,44 @@
-# 🤖 Codex Agents: Torn Script Optimizer
+# 🤖 Codex Assistant Instructions
 
-This repo contains multiple standalone userscripts. Each script is written for Tampermonkey use on torn.com, and each can be treated as a separate optimization target.
-
----
-
-## 🧠 Goals for Codex
-
-Codex, your role is to assist in refactoring, optimizing, and enhancing each script in this repository. Focus areas include:
-
-- ✅ **Performance**  
-  - Remove unnecessary DOM polling  
-  - Optimize `setInterval` and replace with `MutationObserver` where possible
-
-- ✅ **Modularity**  
-  - Suggest shared utilities for repetitive tasks (e.g., logging, UI injection)  
-  - Split large monolithic functions into manageable parts
-
-- ✅ **UI Enhancements**  
-  - Add in-game toggles, settings menus, and collapsible panels  
-  - Adapt to Torn’s light/dark modes
-
-- ✅ **Quality of Life**  
-  - Add error handling for missing elements  
-  - Auto-detect state and react accordingly (e.g., auto-refresh, retry logic)
+This repository contains user scripts for the game Torn. Right now there’s only one, but treat this repo as a **script hub** for personal use and optimization.
 
 ---
 
-## 📜 Script Metadata
+## 🧪 Your Job
 
-All scripts:
-- Use `// ==UserScript==` headers
-- Are triggered on Torn game subpages (e.g. `sid=crimes`, `sid=gym`, etc.)
-- May contain embedded links to Torn guides or tools
-
----
-
-## 🔍 Example Optimization Task
-
-Script: `Torn Crimes 2.0 Helper`
-
-| Task | Priority | Description |
-|------|----------|-------------|
-| Replace `setInterval` with `MutationObserver` | High | Reduce performance hit on low-end machines |
-| Modularize guide link injection | Medium | Separate guide logic from DOM scanner |
-| Add chain progress bar | Medium | Visual enhancement for ongoing chains |
-| Config panel for guide style and button layout | Low | User customization |
+Codex, you're here to:
+- Analyze the code for performance and structure issues
+- Suggest any modern improvements (modular JS, async, etc.)
+- Improve reliability without breaking existing Torn UI
+- Add optional quality-of-life features if relevant
 
 ---
 
-## 📦 Notes
+## 🔍 Script Details
 
-- Codex is allowed to rewrite scripts into module-based JS (ES6) if it improves reusability
-- Do not remove MIT headers or author credits
-- If multiple scripts perform similar tasks (e.g., price tracking), suggest merging functionality into one configurable module
+### 📜 `torn_crimes_helper.user.js`
+- **Author:** TiltGod5000
+- **Features:**  
+  - Adds helpful guide links for Crimes 2.0  
+  - Quick buy buttons  
+  - Chain counter
+- **Current Issues (if any):** None documented yet
+
+---
+
+## 💡 Suggested Tasks
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Review use of `setInterval` or DOM polling | 🕒 To Do | Use `MutationObserver` where possible |
+| Add in-page settings panel for user toggles | 🕒 To Do | Optional, not necessary |
+| Modularize link injection logic | 🕒 To Do | Makes future updates easier |
+| Audit performance impact | 🕒 To Do | Shouldn’t slow down low-end PCs |
+
+---
+
+## ✅ Notes for Codex
+- Do **not** remove author headers or license info
+- All code changes should be backward compatible with Torn’s current layout
+- Add comments for any major changes or refactors
+- You can refactor into modern JavaScript but keep it Tampermonkey-friendly

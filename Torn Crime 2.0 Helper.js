@@ -76,6 +76,10 @@
         transform: rotate(360deg);
       }
     }
+    .settings-button {
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
     `;
 
   const styleSheet = document.createElement('style');
@@ -84,6 +88,7 @@
   const crimeHeader = document.querySelector('.crimes-app');
   const crimeLink = crimeHeader.querySelector('[class*="link_"]');
   const crimeLinkClass = [...crimeLink.classList].find((className) => className.startsWith('link'));
+  const headerElement = crimeHeader.querySelector('.crimes-app-header');
   const crimeChainElement = document.createElement('div');
   let currentEnhancer = null;
   let crimeChainStore = JSON.parse(localStorage.getItem('crimeChain')) || {
@@ -92,6 +97,74 @@
     lastCritical: null,
     lastTimeStamp: null,
   };
+
+  const defaultSettings = {
+    showGuideLinks: true,
+    showQuickBuy: true,
+    showCrimeChain: true,
+    enableShortcuts: false,
+  };
+  let settings =
+    JSON.parse(localStorage.getItem('crimeHelperSettings')) || defaultSettings;
+
+  function saveSettings() {
+    localStorage.setItem('crimeHelperSettings', JSON.stringify(settings));
+    localStorage.setItem('crimeChain', JSON.stringify(crimeChainStore));
+  }
+
+  function initSettingsPanel() {
+    const modal = document.createElement('div');
+    modal.classList.add('apiKeyModal');
+    modal.innerHTML = `
+        <h3>Crime Helper Settings</h3>
+        <label><input type="checkbox" id="showGuideLinks" ${
+          settings.showGuideLinks ? 'checked' : ''
+        } /> Show guide links</label>
+        <label><input type="checkbox" id="showQuickBuy" ${
+          settings.showQuickBuy ? 'checked' : ''
+        } /> Enable quick-buy links</label>
+        <label><input type="checkbox" id="showCrimeChain" ${
+          settings.showCrimeChain ? 'checked' : ''
+        } /> Display crime chain counter</label>
+        <label><input type="checkbox" id="enableShortcuts" ${
+          settings.enableShortcuts ? 'checked' : ''
+        } /> Enable keyboard shortcuts</label>
+        <input type="text" id="apiKeyInput" placeholder="API Key" value="${
+          crimeChainStore.apiKey || ''
+        }" />
+        <div class="modal-buttons">
+          <button type="submit">Save</button>
+          <button>Close</button>
+        </div>
+      `;
+    document.body.appendChild(modal);
+    const [saveBtn, closeBtn] = modal.querySelectorAll('button');
+    closeBtn.onclick = () => modal.remove();
+    saveBtn.onclick = () => {
+      settings.showGuideLinks = modal.querySelector('#showGuideLinks').checked;
+      settings.showQuickBuy = modal.querySelector('#showQuickBuy').checked;
+      settings.showCrimeChain = modal.querySelector('#showCrimeChain').checked;
+      settings.enableShortcuts = modal.querySelector('#enableShortcuts').checked;
+      crimeChainStore.apiKey = modal.querySelector('#apiKeyInput').value.trim();
+      saveSettings();
+      if (!settings.showCrimeChain && crimeChainElement.isConnected) {
+        crimeChainElement.remove();
+      } else if (
+        settings.showCrimeChain &&
+        !crimeChainElement.isConnected
+      ) {
+        addCrimeChain();
+        fetchCrimeLog();
+      }
+      modal.remove();
+    };
+  }
+
+  const settingsButton = document.createElement('button');
+  settingsButton.textContent = '⚙️';
+  settingsButton.classList.add('settings-button');
+  settingsButton.onclick = initSettingsPanel;
+  headerElement.appendChild(settingsButton);
 
   const crimeDirectory = new Map([
     [
@@ -328,6 +401,7 @@
   }
 
   function syncCrimeChain() {
+    if (!settings.showCrimeChain) return;
     const refreshButton = document.createElement('button');
     refreshButton.innerHTML = svgs.refresh;
     refreshButton.onclick = () => fetchCrimeLog(true);
@@ -336,12 +410,14 @@
   }
 
   function addCrimeChain() {
+    if (!settings.showCrimeChain) return;
     crimeChainElement.classList.add('crime-chain');
     crimeHeader.insertBefore(crimeChainElement, document.querySelector('.crimes-app > hr'));
     syncCrimeChain();
   }
 
   function addLinksToRequiredItems(target) {
+    if (!settings.showQuickBuy) return;
     [...target.querySelectorAll('div > [class*="silhouette_"] > img')].forEach((img) => {
       const itemId = /items\/(\d+)/.exec(img.src)[1];
       const linkElement = document.createElement('a');
@@ -353,6 +429,10 @@
   }
 
   function addGuideLink() {
+    if (!settings.showGuideLinks) {
+      crimeHeader.querySelector('.guide-link')?.remove();
+      return;
+    }
     const crimeLocation = window.location.hash.slice(2);
     const guideLink = crimeHeader.querySelector('.guide-link');
     if (crimeLocation === '') {
@@ -379,6 +459,7 @@
   }
 
   function addEnhancerInfo() {
+    if (!settings.showQuickBuy) return;
     const crimeTitle = document.querySelector('.crime-root [class*="title__"]');
     const crimeLocation = window.location.hash.slice(2);
     const crime = crimeDirectory.get(crimeLocation);
@@ -414,15 +495,30 @@
 
   addGuideLink();
   addCrimeChain();
-  fetchCrimeLog();
+  if (settings.showCrimeChain) fetchCrimeLog();
+
+  window.addEventListener('keydown', (e) => {
+    if (!settings.enableShortcuts) return;
+    if (e.shiftKey && e.key.toLowerCase() === 'r') {
+      e.preventDefault();
+      fetchCrimeLog(true);
+    }
+    if (e.shiftKey && e.key.toLowerCase() === 'g') {
+      const link = crimeHeader.querySelector('.guide-link');
+      if (link) {
+        e.preventDefault();
+        window.open(link.href, '_blank');
+      }
+    }
+  });
   window.addEventListener('tt-fetch', ({ detail }) => {
     const enhancer = detail?.json?.DB?.currentUserStats?.enhancer;
-    if (enhancer) {
+    if (settings.showQuickBuy && enhancer) {
       currentEnhancer = enhancer;
     }
     const crimeOutcome = detail?.json?.DB?.outcome?.result;
     const ID = detail?.json?.DB?.outcome?.ID;
-    if (crimeOutcome) {
+    if (settings.showCrimeChain && crimeOutcome) {
       if (crimeOutcome === 'success') {
         crimeChainStore.chain++;
       } else if (crimeOutcome === 'failure') {
